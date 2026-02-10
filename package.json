@@ -32,5 +32,10 @@
     "happy-dom": "^20.4.0",
     "unplugin-auto-import": "^21.0.0",
     "vitest": "^4.0.18"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@nuxt/eslint"
+    ]
   }
 }
