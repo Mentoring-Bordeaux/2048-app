@@ -35,7 +35,7 @@
   },
   "pnpm": {
     "onlyBuiltDependencies": [
-      "@nuxt/eslint"
+      "esbuild"
     ]
   }
 }
