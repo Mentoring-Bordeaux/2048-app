@@ -1,4 +1,4 @@
-name: Hello World
+name: CI
 
 on:
   push:
@@ -6,21 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  hello:
-    runs-on: ubuntu-latest
-    
-    steps:
-      - name: Say Hello
-        run: echo "Hello pipelines' world !"
-      
-      - name: Display runner info
-        run: |
-          echo "Running on: $(uname -a)"
-          echo "Workflow: ${{ github.workflow }}"
-          echo "Triggered by: ${{ github.event_name }}"
-          echo "Repository: ${{ github.repository }}"
-
-  build:
+  ci:
     runs-on: ubuntu-latest
 
     steps:
@@ -36,5 +22,23 @@ jobs:
           node-version: 22
           cache: pnpm
 
-      - name: Run lab2 script
-        run: ./deliverables/lab02/lab2.sh
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Type checking
+        run: pnpm typecheck
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Build
+        run: pnpm build
+
+      - name: Run tests
+        run: pnpm test
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: 2048-app-build
+          path: .output/
