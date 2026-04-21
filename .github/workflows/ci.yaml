@@ -1,10 +1,9 @@
-name: Lab 05
+name: Labs
 
 on:
   push:
     branches:
       - main
-      - lab05
   workflow_dispatch:
 
 env:
@@ -31,7 +30,7 @@ jobs:
         run: pnpm install
 
       - name: Build application
-        run: pnpm build
+        run: pnpm generate
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v6
